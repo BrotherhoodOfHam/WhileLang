@@ -6,6 +6,7 @@
 
 #include <string>
 #include <cstdint>
+#include <array>
 
 enum CharClass : char
 {
@@ -25,13 +26,10 @@ private:
 	enum { CLASS_TABLE_SIZE = 256 };
 
 	//Class table
-	CharClass m_table[CLASS_TABLE_SIZE];
+	std::array<CharClass, CLASS_TABLE_SIZE> m_table;
 
 	CharTypes()
-	{
-		//Other class
-		memset(m_table, CHAR_CLASS_OTHER, CLASS_TABLE_SIZE);
-			
+	{	
 		//Letter class
 		for (uint32_t i = 0; i <= ('z' - 'a'); i++)
 		{

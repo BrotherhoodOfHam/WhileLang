@@ -62,7 +62,7 @@ enum TokenCode
 	//Generic identifier
 	TOKEN_IDENTIFIER,
 
-	TOKEN_ERROR = -1
+	TOKEN_UNKNOWN
 };
 
 /*

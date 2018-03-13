@@ -95,21 +95,19 @@ void Tokenizer::fetch()
 	//for each input character
 	if (m_stream.peek() != EOF)
 	{
-		const CharClass cl = CharTypes::classify(m_stream.peek());
-
-		//whitespace
-		if (cl == CHAR_CLASS_WHITESPACE)
+		//skip whitespace
+		while (CharTypes::classify(m_stream.peek()) == CHAR_CLASS_WHITESPACE)
 		{
-			while (CharTypes::classify(m_stream.peek()) == CHAR_CLASS_WHITESPACE)
+			if (m_stream.get() == '\n')
 			{
-				if (m_stream.get() == '\n')
-				{
-					tok.line++;
-				}
+				tok.line++;
 			}
 		}
+
+		const CharClass cl = CharTypes::classify(m_stream.peek());
+		
 		//number
-		else if (cl == CHAR_CLASS_DIGIT)
+		if (cl == CHAR_CLASS_DIGIT)
 		{
 			tok.code = TOKEN_INTEGER;
 
@@ -140,7 +138,7 @@ void Tokenizer::fetch()
 			char c = m_stream.get();
 			char n = m_stream.peek();
 
-			tok.code = TOKEN_ERROR;
+			tok.code = TOKEN_UNKNOWN;
 			tok.symbol += c;
 			
 			//assign
