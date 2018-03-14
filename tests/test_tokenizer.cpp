@@ -8,7 +8,7 @@
 
 #include <sstream>
 
-#include "Tokenizer.h"
+#include "wl/Tokenizer.h"
 
 TEST(libwl, tokenizer)
 {

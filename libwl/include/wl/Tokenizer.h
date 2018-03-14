@@ -18,6 +18,8 @@ enum TokenCode
 	//keywords
 	TOKEN_PROGRAM,
 	TOKEN_VAR,
+	TOKEN_BEGIN,
+	TOKEN_END,
 	TOKEN_SKIP,
 	TOKEN_READ,
 	TOKEN_WRITE,
@@ -28,6 +30,7 @@ enum TokenCode
 	TOKEN_BOOL_FALSE,
 
 	TOKEN_COLON,     //:
+	TOKEN_COMMA,	 //,
 	TOKEN_SEPARATOR, //;
 
 	//Boolean operators
@@ -123,6 +126,12 @@ public:
 	bool hasNext() const
 	{
 		return peek().code != TOKEN_STOP;
+	}
+
+	//Return true if the next token is of a given type
+	bool isNext(TokenCode code) const
+	{
+		return peek().code == code;
 	}
 
 private:

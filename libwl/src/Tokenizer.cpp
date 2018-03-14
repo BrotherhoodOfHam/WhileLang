@@ -3,7 +3,7 @@
 */
 
 #include "CharTypes.h"
-#include "Tokenizer.h"
+#include "wl/Tokenizer.h"
 
 #include <unordered_map>
 
@@ -18,6 +18,8 @@ namespace
 		({
 			{ "program", TOKEN_PROGRAM },
 			{ "var",     TOKEN_VAR     },
+			{ "begin",   TOKEN_BEGIN   },
+			{ "end",     TOKEN_END     },
 			{ "skip",    TOKEN_SKIP    },
 			{ "read",    TOKEN_READ    },
 			{ "write",   TOKEN_WRITE   },
@@ -57,6 +59,7 @@ namespace
 		static std::unordered_map<char, TokenCode> mapping
 		({
 			{ ':', TOKEN_COLON     },
+			{ ',', TOKEN_COMMA     },
 			{ ';', TOKEN_SEPARATOR },
 
 			{ '<', TOKEN_OP_LT },
@@ -92,18 +95,18 @@ void Tokenizer::fetch()
 	tok.code = TokenCode::TOKEN_STOP;
 	tok.symbol.clear();
 	
+	//skip whitespace
+	while (CharTypes::classify(m_stream.peek()) == CHAR_CLASS_WHITESPACE)
+	{
+		if (m_stream.get() == '\n')
+		{
+			tok.line++;
+		}
+	}
+
 	//for each input character
 	if (m_stream.peek() != EOF)
 	{
-		//skip whitespace
-		while (CharTypes::classify(m_stream.peek()) == CHAR_CLASS_WHITESPACE)
-		{
-			if (m_stream.get() == '\n')
-			{
-				tok.line++;
-			}
-		}
-
 		const CharClass cl = CharTypes::classify(m_stream.peek());
 		
 		//number

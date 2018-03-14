@@ -21,8 +21,15 @@ libwl_inc = include_directories('libwl/include')
 
 libwl = static_library('wl',
 	sources : files(
-		'libwl/include/Tokenizer.h',
+		'libwl/include/wl/Tokenizer.h',
+		'libwl/include/wl/Context.h',
+		'libwl/include/wl/Evaluator.h',
+		'libwl/include/wl/Statement.h',
+		'libwl/include/wl/Interpreter.h',
+		'libwl/src/SyntaxError.h',
 		'libwl/src/CharTypes.h',
+		'libwl/src/Context.cpp',
+		'libwl/src/Interpreter.cpp',
 		'libwl/src/Tokenizer.cpp',
 		'libwl/src/TokenEnum.cpp'
 	),
@@ -43,8 +50,8 @@ executable('wlc',
 
 wltest = executable('wltest',
 	sources : files(
-		'wltest/test_tokenizer.cpp',
-		'wltest/test.cpp'
+		'tests/test_tokenizer.cpp',
+		'tests/test.cpp'
 	),
 	link_with : libwl,
 	include_directories : libwl_inc,

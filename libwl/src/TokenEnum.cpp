@@ -2,7 +2,7 @@
 	Token Code enum string table.
 */
 
-#include "Tokenizer.h"
+#include "wl/Tokenizer.h"
 
 const char* Token::codeToString(TokenCode code)
 {
@@ -13,6 +13,8 @@ const char* Token::codeToString(TokenCode code)
 		//keywords
 		"PROGRAM",
 		"VAR",
+		"BEGIN",
+		"END",
 		"SKIP",
 		"READ",
 		"WRITE",
