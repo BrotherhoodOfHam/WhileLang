@@ -55,6 +55,6 @@ public:
 	static CharClass classify(char c)
 	{
 		static const CharTypes s_types;
-		return s_types.m_table[c];
+		return s_types.m_table[reinterpret_cast<unsigned char&>(c)];
 	}
 };

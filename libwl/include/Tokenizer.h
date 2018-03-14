@@ -4,6 +4,8 @@
 	Takes a stream of characters as input and produces a sequence of tokens.
 */
 
+#pragma once
+
 #include <istream>
 #include <string>
 
@@ -84,6 +86,8 @@ struct Token
 		code(rhs.code),
 		line(rhs.line)
 	{}
+
+	static const char* codeToString(TokenCode code);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
