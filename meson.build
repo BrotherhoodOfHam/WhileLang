@@ -14,6 +14,8 @@ if not gtest.found()
 endif
 
 ########################################################################
+#	Interpreter
+########################################################################
 
 libwl_inc = include_directories('libwl/include')
 
@@ -35,9 +37,13 @@ executable('wlc',
 	include_directories : libwl_inc
 )
 
+########################################################################
+#	Tests
+########################################################################
+
 wltest = executable('wltest',
 	sources : files(
-		'wltest/test_tokenizer.h',
+		'wltest/test_tokenizer.cpp',
 		'wltest/test.cpp'
 	),
 	link_with : libwl,

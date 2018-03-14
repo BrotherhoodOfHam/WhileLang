@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <gtest/gtest.h>
+
 #include <sstream>
 
 #include "Tokenizer.h"
