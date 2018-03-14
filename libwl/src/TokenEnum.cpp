@@ -25,16 +25,20 @@ const char* Token::codeToString(TokenCode code)
 		"BOOL_FALSE",
 
 		"COLON",     //:
+		"COMMA",	 //,
 		"SEPARATOR", //;
 
-					 //Boolean operators
+		"TOKEN_OPEN_BRACKET",  //(
+		"TOKEN_CLOSE_BRACKET", //)
+
+		//Boolean operators
 		"OP_AND",
 		"OP_OR",
 		"OP_NOT",
 
 		"OP_ASSIGN", //:=
 
-					 //Comparators
+		//Comparators
 		"OP_EQ",  // ==
 		"OP_NEQ", // !=
 		"OP_LE",  // <=
@@ -42,14 +46,14 @@ const char* Token::codeToString(TokenCode code)
 		"OP_LT",  // <
 		"OP_GT",  // >
 
-				  //Arithmetic operators
+		//Arithmetic operators
 		"OP_MUL",   // *
 		"OP_DIV",   // /
 		"OP_MOD",   // %
 		"OP_MINUS", // -
 		"OP_PLUS",  // +
 
-					//Control flow
+		//Control flow
 		"IF",
 		"THEN",
 		"ELSE",
@@ -58,7 +62,7 @@ const char* Token::codeToString(TokenCode code)
 		"DO",
 		"OD", //end while
 
-			  //Generic identifier
+		//Generic identifier
 		"IDENTIFIER",
 
 		"UNKNOWN"

@@ -62,6 +62,9 @@ namespace
 			{ ',', TOKEN_COMMA     },
 			{ ';', TOKEN_SEPARATOR },
 
+			{ '(', TOKEN_OPEN_BRACKET  },
+			{ ')', TOKEN_CLOSE_BRACKET },
+
 			{ '<', TOKEN_OP_LT },
 			{ '>', TOKEN_OP_GT },
 

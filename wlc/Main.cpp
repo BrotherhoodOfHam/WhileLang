@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 #include "wl/Interpreter.h"
 
@@ -11,13 +12,13 @@
 
 int main(int argc, char** argv)
 {
-	const char str[] = "program\n"
-		"var x : nat;\n"
-		"begin\n"
-		"end\n";
+	std::ifstream s("../samples/a.w");
 
-	std::stringstream s;
-	s << str;
+	if (s.fail())
+	{
+		std::cerr << "unable to find file." << std::endl;
+		return -2;
+	}
 
 	WLInterpreter i(s);
 

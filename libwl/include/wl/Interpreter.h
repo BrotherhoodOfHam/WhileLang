@@ -42,10 +42,21 @@ private:
 
 	Token assertNext(TokenCode code);
 
-	void evaluateHeader();
-	void evaluateDeclarationList();
-	void evaluateDeclaration();
-	void evaluateCode();
+	//Parsing functions
+	void parseDeclarationList();
+	void parseDeclaration();
+	void parseIdentifierList(std::vector<std::string>& ids);
+	
+	//Code evaluation
+	void evalCode();
+	void evalCommand();
+	//Statements
+	void evalAssignment();
+	void evalIteration();
+	void evalConditional();
+	//IO commands
+	void evalIOWrite();
+	void evalIORead();
 
 	std::ostream* m_log;
 

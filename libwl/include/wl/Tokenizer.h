@@ -33,6 +33,9 @@ enum TokenCode
 	TOKEN_COMMA,	 //,
 	TOKEN_SEPARATOR, //;
 
+	TOKEN_OPEN_BRACKET,  //(
+	TOKEN_CLOSE_BRACKET, //)
+
 	//Boolean operators
 	TOKEN_OP_AND,
 	TOKEN_OP_OR,
