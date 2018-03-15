@@ -5,7 +5,9 @@
 #include <iostream>
 
 #include "wl/Interpreter.h"
-#include "SyntaxError.h"
+#include "wl/SyntaxError.h"
+
+#include "AST/ProgramDeclaration.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +23,7 @@ ExitCode WLInterpreter::execute()
 	try
 	{
 		//program keyword
-		assertNext(TOKEN_PROGRAM);
+		m_tokens.nextAssert(TOKEN_PROGRAM);
 
 		//Parse variable declarations
 		parseDeclarationList();
@@ -63,17 +65,17 @@ void WLInterpreter::parseDeclaration()
 	std::vector<std::string> varNames;
 	std::string typeName;
 
-	assertNext(TOKEN_VAR);
+	m_tokens.nextAssert(TOKEN_VAR);
 
 	/*
 		Extract variable names
 	*/
 	parseIdentifierList(varNames);
 
-	assertNext(TOKEN_COLON);
+	m_tokens.nextAssert(TOKEN_COLON);
 
 	//Extract type name
-	typeName = assertNext(TOKEN_IDENTIFIER).symbol;
+	typeName = m_tokens.nextAssert(TOKEN_IDENTIFIER).symbol;
 
 	//Forward declare all variables
 	for (const auto& name : varNames)
@@ -82,14 +84,14 @@ void WLInterpreter::parseDeclaration()
 	}
 	
 	//consume ;
-	assertNext(TOKEN_SEPARATOR);
+	m_tokens.nextAssert(TOKEN_SEPARATOR);
 }
 
 void WLInterpreter::parseIdentifierList(std::vector<std::string>& ids)
 {
 	while (true)
 	{
-		ids.push_back(assertNext(TOKEN_IDENTIFIER).symbol);
+		ids.push_back(m_tokens.nextAssert(TOKEN_IDENTIFIER).symbol);
 
 		if (m_tokens.isNext(TOKEN_COMMA))
 		{
@@ -106,7 +108,7 @@ void WLInterpreter::parseIdentifierList(std::vector<std::string>& ids)
 
 void WLInterpreter::evalCode()
 {
-	assertNext(TOKEN_BEGIN);
+	m_tokens.nextAssert(TOKEN_BEGIN);
 
 	while (!m_tokens.isNext(TOKEN_END))
 	{
@@ -128,9 +130,7 @@ void WLInterpreter::evalCode()
 */
 void WLInterpreter::evalCommand()
 {
-	TokenCode code = m_tokens.peek().code;
-
-	switch (code)
+	switch (m_tokens.peek().code)
 	{
 		//statements
 		case TOKEN_SKIP:       m_tokens.next();   break; //no-op
@@ -142,7 +142,7 @@ void WLInterpreter::evalCommand()
 		case TOKEN_WRITE:      evalIOWrite();     break;
 	}
 
-	assertNext(TOKEN_SEPARATOR);
+	m_tokens.nextAssert(TOKEN_SEPARATOR);
 }
 
 /*
@@ -152,12 +152,12 @@ void WLInterpreter::evalCommand()
 */
 void WLInterpreter::evalAssignment()
 {
-	const std::string id = assertNext(TOKEN_IDENTIFIER).symbol;
+	const std::string id = m_tokens.nextAssert(TOKEN_IDENTIFIER).symbol;
 
-	assertNext(TOKEN_OP_ASSIGN);
+	m_tokens.nextAssert(TOKEN_OP_ASSIGN);
 
-	while (!m_tokens.isNext(TOKEN_SEPARATOR))
-		m_tokens.next();
+	while (!m_tokens.isNext(TOKEN_SEPARATOR)) m_tokens.next();
+	//m_ctx.setVariable("", std::to_string(evalExpression()));
 
 	std::cout << "ASSIGNMENT\n";
 }
@@ -169,7 +169,7 @@ void WLInterpreter::evalAssignment()
 */
 void WLInterpreter::evalIteration()
 {
-	assertNext(TOKEN_WHILE);
+	m_tokens.nextAssert(TOKEN_WHILE);
 
 	while (!m_tokens.isNext(TOKEN_OD))
 	{
@@ -188,7 +188,7 @@ void WLInterpreter::evalIteration()
 */
 void WLInterpreter::evalConditional()
 {
-	assertNext(TOKEN_IF);
+	m_tokens.nextAssert(TOKEN_IF);
 
 	while (!m_tokens.isNext(TOKEN_FI))
 	{
@@ -209,7 +209,7 @@ void WLInterpreter::evalIOWrite()
 {
 	std::vector<std::string> varNames;
 
-	assertNext(TOKEN_WRITE);
+	m_tokens.nextAssert(TOKEN_WRITE);
 
 	parseIdentifierList(varNames);
 }
@@ -223,23 +223,11 @@ void WLInterpreter::evalIORead()
 {
 	std::vector<std::string> varNames;
 
-	assertNext(TOKEN_READ);
+	m_tokens.nextAssert(TOKEN_READ);
 
+	m_tokens.nextAssert(TOKEN_OPEN_BRACKET);
 	parseIdentifierList(varNames);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Helpers
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-Token WLInterpreter::assertNext(TokenCode code)
-{
-	if (!m_tokens.isNext(code))
-	{
-		throw SyntaxError(code, m_tokens.peek().code);
-	}
-
-	return m_tokens.next();
+	m_tokens.nextAssert(TOKEN_CLOSE_BRACKET);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

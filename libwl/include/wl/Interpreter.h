@@ -40,8 +40,6 @@ public:
 
 private:
 
-	Token assertNext(TokenCode code);
-
 	//Parsing functions
 	void parseDeclarationList();
 	void parseDeclaration();

@@ -4,6 +4,7 @@
 
 #include "CharTypes.h"
 #include "wl/Tokenizer.h"
+#include "wl/SyntaxError.h"
 
 #include <unordered_map>
 
@@ -24,8 +25,8 @@ namespace
 			{ "read",    TOKEN_READ    },
 			{ "write",   TOKEN_WRITE   },
 
-			{ "true",  TOKEN_BOOL_TRUE  },
-			{ "false", TOKEN_BOOL_FALSE },
+			{ "true",  TOKEN_BOOL  },
+			{ "false", TOKEN_BOOL  },
 
 			{ "and",  TOKEN_OP_AND },
 			{ "or",   TOKEN_OP_OR  },
@@ -184,6 +185,18 @@ void Tokenizer::fetch()
 			}
 		}
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Token Tokenizer::nextAssert(TokenCode code)
+{
+	if (!isNext(code))
+	{
+		throw SyntaxError();
+	}
+
+	return next();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -24,8 +24,8 @@ struct SyntaxError
 	void format(std::ostream& out)
 	{
 		out << "Syntax Error:\n";
-		out << "Expected <" << Token::codeToString(expected);
-		out << "> actually got <" << Token::codeToString(actual) << ">";
+		out << "Expected \"" << Token::codeToString(expected);
+		out << "\" actually got \"" << Token::codeToString(actual) << "\"";
 		out << std::endl;
 	}
 };

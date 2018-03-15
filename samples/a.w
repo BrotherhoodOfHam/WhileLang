@@ -1,9 +1,20 @@
 program
 var x, y : nat;
-var b : bool;
+var i : nat;
 begin
 	x := 2 * 3;
 	y := 2 + 4;
-	b := x == y;
-	if b then write x; else y; fi;
+	
+	if (x == y) then
+		write(x);
+	else
+		skip;
+	fi;
+	
+	i := 0;
+	while (i < 5) do
+		i := i + 1;
+		write(i);
+	od;
+	
 end

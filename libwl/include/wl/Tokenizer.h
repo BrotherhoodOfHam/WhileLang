@@ -26,8 +26,7 @@ enum TokenCode
 
 	//Values
 	TOKEN_INTEGER,
-	TOKEN_BOOL_TRUE,
-	TOKEN_BOOL_FALSE,
+	TOKEN_BOOL,
 
 	TOKEN_COLON,     //:
 	TOKEN_COMMA,	 //,
@@ -124,6 +123,9 @@ public:
 	{
 		return m_next;
 	}
+
+	//Get the next token and assert it's type is equal to the given code
+	Token nextAssert(TokenCode code);
 
 	//Return true if there is another token
 	bool hasNext() const

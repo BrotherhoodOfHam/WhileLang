@@ -11,59 +11,59 @@ const char* Token::codeToString(TokenCode code)
 		"STOP"
 
 		//keywords
-		"PROGRAM",
-		"VAR",
-		"BEGIN",
-		"END",
-		"SKIP",
-		"READ",
-		"WRITE",
+		"program",
+		"var",
+		"begin",
+		"end",
+		"skip",
+		"read",
+		"write",
 
 		//Values
-		"INTEGER",
-		"BOOL_TRUE",
-		"BOOL_FALSE",
+		"Integer Constant",
+		"Boolean Constant",
 
-		"COLON",     //:
-		"COMMA",	 //,
-		"SEPARATOR", //;
+		":",
+		",",
+		";",
 
-		"TOKEN_OPEN_BRACKET",  //(
-		"TOKEN_CLOSE_BRACKET", //)
+		"(",  //(
+		")", //)
 
 		//Boolean operators
-		"OP_AND",
-		"OP_OR",
-		"OP_NOT",
+		"and",
+		"or",
+		"not",
 
-		"OP_ASSIGN", //:=
+		//Assignment
+		":=",
 
 		//Comparators
-		"OP_EQ",  // ==
-		"OP_NEQ", // !=
-		"OP_LE",  // <=
-		"OP_GE",  // >=
-		"OP_LT",  // <
-		"OP_GT",  // >
+		"==",
+		"!=",
+		"<=",
+		">=",
+		"<",
+		">",
 
 		//Arithmetic operators
-		"OP_MUL",   // *
-		"OP_DIV",   // /
-		"OP_MOD",   // %
-		"OP_MINUS", // -
-		"OP_PLUS",  // +
+		"*",
+		"/",
+		"%",
+		"-",
+		"+",
 
 		//Control flow
-		"IF",
-		"THEN",
-		"ELSE",
-		"FI", //end if
-		"WHILE",
-		"DO",
-		"OD", //end while
+		"if",
+		"then",
+		"else",
+		"fi", //end if
+		"while",
+		"do",
+		"od", //end while
 
 		//Generic identifier
-		"IDENTIFIER",
+		"Identifier",
 
 		"UNKNOWN"
 	};
