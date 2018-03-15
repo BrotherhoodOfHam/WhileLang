@@ -1,7 +1,11 @@
 /*
-	Program declaration
+	Program declaration:
 
-	<program> ::= program <
+	<program> ::= program
+					<variable-declaration-list>
+				  begin
+					<command-list>
+				  end
 */
 
 #pragma once
@@ -17,7 +21,15 @@ public:
 
 	ProgramDeclaration(Tokenizer& tokens)
 	{
+		tokens.nextAssert(TOKEN_PROGRAM);
 
+		m_vars = VariableDeclarationList(tokens);
+
+		tokens.nextAssert(TOKEN_BEGIN);
+
+		m_commands = CommandList(tokens);
+
+		tokens.nextAssert(TOKEN_END);
 	}
 
 	~ProgramDeclaration() {}
@@ -26,4 +38,9 @@ public:
 	{
 
 	}
+
+private:
+
+	VariableDeclarationList m_vars;
+	CommandList m_commands;
 };

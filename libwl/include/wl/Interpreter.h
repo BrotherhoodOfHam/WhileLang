@@ -8,9 +8,11 @@
 
 #include <istream>
 #include <ostream>
+#include <memory>
 
 #include "Context.h"
 #include "Tokenizer.h"
+#include "AST.h"
 
 enum ExitCode
 {
@@ -57,6 +59,8 @@ private:
 	void evalIORead();
 
 	std::ostream* m_log;
+
+	std::unique_ptr<AST> m_syntaxTree;
 
 	Context m_ctx;
 	Tokenizer m_tokens;

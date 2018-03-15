@@ -22,6 +22,11 @@ ExitCode WLInterpreter::execute()
 {
 	try
 	{
+		//Build Abstract Syntax Tree
+		m_syntaxTree.reset(new ProgramDeclaration(m_tokens));
+
+
+		/*
 		//program keyword
 		m_tokens.nextAssert(TOKEN_PROGRAM);
 
@@ -30,6 +35,7 @@ ExitCode WLInterpreter::execute()
 
 		//Evaluate program code
 		evalCode();
+		*/
 	}
 	catch (SyntaxError e)
 	{
