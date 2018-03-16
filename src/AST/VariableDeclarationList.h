@@ -21,7 +21,12 @@ public:
 
 	VariableDeclarationList(Tokenizer& tokens)
 	{
-
+		while (!tokens.isNext(TOKEN_BEGIN))
+		{
+			m_variables.push_back(VariableDeclaration(tokens));
+			
+			tokens.nextAssert(TOKEN_SEPARATOR);
+		}
 	}
 
 	void evalutate(Context& ctx) override

@@ -20,12 +20,30 @@ public:
 
 	VariableDeclaration(Tokenizer& tokens)
 	{
-
+		tokens.nextAssert(TOKEN_VAR);
+		
+		while (!tokens.isNext(TOKEN_COLON))
+		{
+			m_identifiers.push_back(tokens.nextAssert(TOKEN_IDENTIFIER).symbol);
+			
+			if (tokens.isNext(TOKEN_COMMA))
+			{
+				tokens.next();
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		tokens.next();
+		
+		m_type = tokens.nextAssert(TOKEN_IDENTIFIER);
 	}
 
 	void evalutate(Context& ctx) override
 	{
-
+		
 	}
 
 private:

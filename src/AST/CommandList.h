@@ -1,7 +1,7 @@
 /*
 	Command List:
 
-
+	<command-list> ::= <command>; | <command>; <command-list>
 */
 
 #pragma once
@@ -17,15 +17,19 @@ public:
 
 	CommandList(Tokenizer& tokens)
 	{
-
+		while (Command::isCommand(tokens))
+		{
+			m_commands.push_back(Command(tokens));
+			tokens.nextAssert(TOKEN_SEPARATOR);
+		}
 	}
 
 	void evalutate(Context& ctx) override
 	{
-
+		
 	}
 
 private:
 
-	std::vector<Command*> m_commands;
+	std::vector<Command> m_commands;
 };
