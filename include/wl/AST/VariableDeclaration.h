@@ -38,7 +38,7 @@ public:
 		
 		tokens.next();
 		
-		m_type = tokens.nextAssert(TOKEN_IDENTIFIER);
+		m_type = tokens.nextAssert(TOKEN_IDENTIFIER).symbol;
 	}
 
 	void evalutate(Context& ctx) override

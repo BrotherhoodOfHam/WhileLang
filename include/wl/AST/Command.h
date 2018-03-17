@@ -34,7 +34,7 @@ public:
 			case TOKEN_SKIP:	   return true;
 			case TOKEN_IF:         return true;
 			case TOKEN_WHILE:      return true;
-			case TOKEN_ASSIGNMENT: return true;
+			case TOKEN_OP_ASSIGN:  return true;
 			case TOKEN_READ:       return true;
 			case TOKEN_WRITE:      return true;
 		}
@@ -53,7 +53,7 @@ public:
 			case TOKEN_SKIP:	   m_command.reset(nullptr);                         return;
 			case TOKEN_IF:         m_command.reset(new IfElseStatement(tokens));     return;
 			case TOKEN_WHILE:      m_command.reset(new WhileStatement(tokens));      return;
-			case TOKEN_ASSIGNMENT: m_command.reset(new AssignmentStatement(tokens)); return;
+			case TOKEN_OP_ASSIGN:  m_command.reset(new AssignmentStatement(tokens)); return;
 			case TOKEN_READ:       m_command.reset(new IOReadCommand(tokens));       return;
 			case TOKEN_WRITE:      m_command.reset(new IOWriteCommand(tokens));      return;
 		}

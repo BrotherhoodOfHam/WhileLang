@@ -7,7 +7,7 @@
 #include "wl/Interpreter.h"
 #include "wl/SyntaxError.h"
 
-#include "AST/ProgramDeclaration.h"
+#include "wl/AST/ProgramDeclaration.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
