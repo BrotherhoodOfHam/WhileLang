@@ -152,7 +152,7 @@ void Tokenizer::fetch()
 			if (c == ':' && n == '=')
 			{
 				tok.symbol += m_stream.get();
-				tok.code = TOKEN_OP_ASSIGN;
+				tok.code = TOKEN_ASSIGN;
 			}
 			//not equal
 			else if (c == '!' && n == '=')

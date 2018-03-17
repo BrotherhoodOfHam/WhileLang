@@ -7,7 +7,7 @@
 #include "wl/Interpreter.h"
 #include "wl/SyntaxError.h"
 
-#include "wl/AST/ProgramDeclaration.h"
+#include "wl/AST/ProgramStart.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +23,7 @@ ExitCode WLInterpreter::execute()
 	try
 	{
 		//Build Abstract Syntax Tree
-		m_syntaxTree.reset(new ProgramDeclaration(m_tokens));
+		m_syntaxTree.reset(new ProgramStart(m_tokens));
 
 
 		/*
@@ -160,7 +160,7 @@ void WLInterpreter::evalAssignment()
 {
 	const std::string id = m_tokens.nextAssert(TOKEN_IDENTIFIER).symbol;
 
-	m_tokens.nextAssert(TOKEN_OP_ASSIGN);
+	m_tokens.nextAssert(TOKEN_ASSIGN);
 
 	while (!m_tokens.isNext(TOKEN_SEPARATOR)) m_tokens.next();
 	//m_ctx.setVariable("", std::to_string(evalExpression()));

@@ -15,11 +15,11 @@
 #include "VariableDeclarationList.h"
 #include "CommandList.h"
 
-class ProgramDeclaration : public AST
+class ProgramStart : public AST
 {
 public:
 
-	ProgramDeclaration(Tokenizer& tokens)
+	ProgramStart(Tokenizer& tokens)
 	{
 		tokens.nextAssert(TOKEN_PROGRAM);
 
@@ -32,9 +32,9 @@ public:
 		tokens.nextAssert(TOKEN_END);
 	}
 
-	~ProgramDeclaration() {}
+	~ProgramStart() {}
 
-	void evalutate(Context& ctx) override
+	void evaluate(Context& ctx) override
 	{
 
 	}

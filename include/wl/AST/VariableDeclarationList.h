@@ -29,7 +29,7 @@ public:
 		}
 	}
 
-	void evalutate(Context& ctx) override
+	void evaluate(Context& ctx) override
 	{
 
 	}

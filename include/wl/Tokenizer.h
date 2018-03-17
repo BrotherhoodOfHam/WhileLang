@@ -40,7 +40,7 @@ enum TokenCode
 	TOKEN_OP_OR,
 	TOKEN_OP_NOT,
 
-	TOKEN_OP_ASSIGN, //:=
+	TOKEN_ASSIGN, //:=
 
 	//Comparators
 	TOKEN_OP_EQ,  // ==

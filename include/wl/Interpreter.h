@@ -60,7 +60,7 @@ private:
 
 	std::ostream* m_log;
 
-	std::unique_ptr<AST> m_syntaxTree;
+	ASTNode m_syntaxTree;
 
 	Context m_ctx;
 	Tokenizer m_tokens;

@@ -16,7 +16,9 @@ class AST
 {
 public:
 
-	virtual void evalutate(Context& ctx) = 0;
+	virtual void evaluate(Context& ctx) = 0;
 
 	virtual ~AST() {}
 };
+
+using ASTNode = std::unique_ptr<AST>;

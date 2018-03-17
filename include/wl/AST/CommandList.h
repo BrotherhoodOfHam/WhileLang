@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "Command.h"
+#include "CommandBuilder.h"
 
 class CommandList : public AST
 {
@@ -17,19 +17,21 @@ public:
 
 	CommandList(Tokenizer& tokens)
 	{
-		while (Command::isCommand(tokens))
+		while (CommandBuilder::hasNext(tokens))
 		{
-			m_commands.push_back(Command(tokens));
+			m_commands.emplace_back(CommandBuilder::construct(tokens));
 			tokens.nextAssert(TOKEN_SEPARATOR);
 		}
 	}
 
-	void evalutate(Context& ctx) override
+	void evaluate(Context& ctx) override
 	{
 		
 	}
 
 private:
 
-	std::vector<Command> m_commands;
+	//Really ugly fix
+	//Chnage to unique_ptrs at some point
+	std::vector<std::shared_ptr<AST>> m_commands;
 };
