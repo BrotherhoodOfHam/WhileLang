@@ -14,7 +14,16 @@ public:
 
 	WhileStatement(Tokenizer& tokens)
 	{
+		tokens.nextAssert(TOKEN_WHILE);
 
+		while (!tokens.isNext(TOKEN_DO)) //bool expr
+			tokens.next();
+
+		tokens.nextAssert(TOKEN_DO);
+
+		m_loop = CommandList(tokens);
+
+		tokens.nextAssert(TOKEN_OD);
 	}
 
 	void evaluate(Context& ctx) override
@@ -24,5 +33,5 @@ public:
 
 private:
 
-
+	CommandList m_loop;
 };

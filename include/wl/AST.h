@@ -22,3 +22,5 @@ public:
 };
 
 using ASTNode = std::unique_ptr<AST>;
+//todo: replace with unique ptr
+using ASTNodeList = std::vector<std::shared_ptr<AST>>;

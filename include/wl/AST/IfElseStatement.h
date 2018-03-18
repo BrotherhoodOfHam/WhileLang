@@ -16,7 +16,20 @@ public:
 
 	IfElseStatement(Tokenizer& tokens)
 	{
+		tokens.nextAssert(TOKEN_IF);
 
+		while (!tokens.isNext(TOKEN_THEN)) //bool expr
+			tokens.next();
+
+		tokens.nextAssert(TOKEN_THEN);
+
+		m_true = CommandList(tokens);
+
+		tokens.nextAssert(TOKEN_ELSE);
+
+		m_false = CommandList(tokens);
+
+		tokens.nextAssert(TOKEN_FI);
 	}
 
 	void evaluate(Context& ctx) override
@@ -26,4 +39,6 @@ public:
 
 private:
 
+	CommandList m_true;
+	CommandList m_false;
 };

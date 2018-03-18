@@ -31,7 +31,5 @@ public:
 
 private:
 
-	//Really ugly fix
-	//Chnage to unique_ptrs at some point
-	std::vector<std::shared_ptr<AST>> m_commands;
+	ASTNodeList m_commands;
 };
