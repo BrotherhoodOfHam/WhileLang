@@ -2,8 +2,10 @@ program
 var x, y : nat;
 var i : nat;
 begin
-	x := 2 * 3;
-	y := 2 + 4;
+	read(x,y);
+	
+	x := (0 * 2) + (2 * x);
+	y := 2 + y;
 	
 	if (x == y) then
 		write(x);

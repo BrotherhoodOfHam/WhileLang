@@ -26,17 +26,19 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-		
+		for (auto& cmd : m_commands)
+		{
+			cmd->evaluate(ctx);
+		}
 	}
 
 	void print(std::ostream& out, uint32_t i) override
 	{
 		indent(out, i);
 		out << "COMMAND-LIST:" << std::endl;
-		for (auto& node : m_commands)
+		for (auto& cmd : m_commands)
 		{
-			if (node != nullptr)
-			node->print(out, i + 1);
+			cmd->print(out, i + 1);
 		}
 	}
 

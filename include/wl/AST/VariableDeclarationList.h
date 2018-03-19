@@ -31,7 +31,10 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-
+		for (auto& var : m_variables)
+		{
+			var.evaluate(ctx);
+		}
 	}
 
 	void print(std::ostream& out, uint32_t i) override

@@ -43,7 +43,10 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-		
+		for (auto& varName : m_identifiers)
+		{
+			ctx.declareVariable(varName, m_type);
+		}
 	}
 
 	void print(std::ostream& out, uint32_t i) override

@@ -36,7 +36,8 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-
+		m_vars.evaluate(ctx);
+		m_commands.evaluate(ctx);
 	}
 
 	void print(std::ostream& out, uint32_t i) override

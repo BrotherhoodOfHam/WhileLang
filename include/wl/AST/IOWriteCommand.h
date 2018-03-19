@@ -45,7 +45,7 @@ public:
 	void print(std::ostream& out, uint32_t i) override
 	{
 		indent(out, i);
-		out << "WRITE" << std::endl;
+		out << "IO-WRITE" << std::endl;
 
 		for (auto& node : m_expressions)
 		{
