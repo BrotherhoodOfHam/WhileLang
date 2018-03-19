@@ -46,6 +46,21 @@ public:
 		
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "VARDECL ";
+
+		for (auto& v : m_identifiers)
+		{
+			out << v << ", ";
+		}
+
+		out << "TYPE ";
+		out << m_type;
+		out << std::endl;
+	}
+
 private:
 
 	std::string m_type;

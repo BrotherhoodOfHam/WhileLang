@@ -26,6 +26,13 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "ASSIGNMENT " << m_variable << std::endl;
+		m_expression->print(out, i + 1);
+	}
+
 private:
 
 	std::string m_variable;

@@ -8,6 +8,7 @@
 
 #include "wl/AST.h"
 
+#include "ExpressionBuilder.h"
 #include "CommandList.h"
 
 class IfElseStatement : public AST
@@ -18,8 +19,7 @@ public:
 	{
 		tokens.nextAssert(TOKEN_IF);
 
-		while (!tokens.isNext(TOKEN_THEN)) //bool expr
-			tokens.next();
+		m_condition.swap(ExpressionBuilder::construct(tokens));
 
 		tokens.nextAssert(TOKEN_THEN);
 
@@ -37,8 +37,27 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "IF" << std::endl;
+
+		indent(out, i + 1);
+		out << "CONDITION" << std::endl;
+		m_condition->print(out, i + 2);
+
+		indent(out, i + 1);
+		out << "THEN" << std::endl;
+		m_true.print(out, i + 2);
+
+		indent(out, i + 1);
+		out << "ELSE" << std::endl;
+		m_false.print(out, i + 2);
+	}
+
 private:
 
+	ASTNode m_condition;
 	CommandList m_true;
 	CommandList m_false;
 };

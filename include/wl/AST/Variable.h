@@ -23,6 +23,12 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "VARIABLE " << m_identifier << std::endl;
+	}
+
 private:
 
 	std::string m_identifier;

@@ -39,6 +39,14 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "PROGRAM\n";
+		m_vars.print(out, i + 1);
+		m_commands.print(out, i + 1);
+	}
+
 private:
 
 	VariableDeclarationList m_vars;

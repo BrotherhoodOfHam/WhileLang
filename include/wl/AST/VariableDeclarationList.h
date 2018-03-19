@@ -34,6 +34,16 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "VARDECL-LIST:" << std::endl;
+		for (auto& node : m_variables)
+		{
+			node.print(out, i + 1);
+		}
+	}
+
 private:
 
 	std::vector<VariableDeclaration> m_variables;

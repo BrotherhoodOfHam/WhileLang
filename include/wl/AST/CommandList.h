@@ -29,6 +29,17 @@ public:
 		
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "COMMAND-LIST:" << std::endl;
+		for (auto& node : m_commands)
+		{
+			if (node != nullptr)
+			node->print(out, i + 1);
+		}
+	}
+
 private:
 
 	ASTNodeList m_commands;

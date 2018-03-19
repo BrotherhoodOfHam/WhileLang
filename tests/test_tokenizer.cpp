@@ -19,7 +19,7 @@ TEST(libwl, tokenizer)
 
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_VAR);			//var
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_IDENTIFIER);	//c
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_ASSIGN);		//:=
+	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_ASSIGN);		//:=
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//10
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_MUL);		//*
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//20
@@ -28,7 +28,7 @@ TEST(libwl, tokenizer)
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_SEPARATOR);		//;
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_VAR);			//var
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_IDENTIFIER);	//b
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_ASSIGN);		//:=
+	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_ASSIGN);		//:=
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_IDENTIFIER);	//c
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_EQ);			//==
 	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//201

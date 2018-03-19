@@ -25,6 +25,7 @@ ExitCode WLInterpreter::execute()
 		//Build Abstract Syntax Tree
 		m_syntaxTree.reset(new ProgramStart(m_tokens));
 
+		m_syntaxTree->print(std::cout);
 
 		/*
 		//program keyword

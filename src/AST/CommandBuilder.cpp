@@ -9,6 +9,7 @@
 #include "wl/AST/AssignmentStatement.h"
 #include "wl/AST/IOReadCommand.h"
 #include "wl/AST/IOWriteCommand.h"
+#include "wl/AST/SkipStatement.h"
 
 bool CommandBuilder::hasNext(Tokenizer& tokens)
 {
@@ -30,7 +31,7 @@ ASTNode CommandBuilder::construct(Tokenizer& tokens)
 	//Infer what type of command is next
 	switch (tokens.peek().code)
 	{
-	case TOKEN_SKIP:	   tokens.next(); return nullptr;
+	case TOKEN_SKIP:	   return ASTNode(new SkipStatement(tokens));
 	case TOKEN_IF:         return ASTNode(new IfElseStatement(tokens));
 	case TOKEN_WHILE:      return ASTNode(new WhileStatement(tokens));
 	case TOKEN_IDENTIFIER: return ASTNode(new AssignmentStatement(tokens));

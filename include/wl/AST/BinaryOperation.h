@@ -36,6 +36,14 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "OPERATION " << m_op << std::endl;
+		m_left->print(out, i + 1);
+		m_right->print(out, i + 1);
+	}
+
 private:
 
 	ASTNode m_left;

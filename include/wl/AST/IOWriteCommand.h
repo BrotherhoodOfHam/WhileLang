@@ -39,7 +39,18 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
+		
+	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "WRITE" << std::endl;
+
+		for (auto& node : m_expressions)
+		{
+			node->print(out, i + 1);
+		}
 	}
 
 private:

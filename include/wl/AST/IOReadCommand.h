@@ -39,6 +39,19 @@ public:
 
 	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "IO-READ ";
+
+		for (auto& v : m_variables)
+		{
+			out << v << ", ";
+		}
+
+		out << std::endl;
+	}
+
 private:
 
 	std::vector<std::string> m_variables;

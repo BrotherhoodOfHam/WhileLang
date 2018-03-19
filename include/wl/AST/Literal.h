@@ -41,7 +41,13 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
+		
+	}
 
+	void print(std::ostream& out, uint32_t i) override
+	{
+		indent(out, i);
+		out << "LITERAL " << m_value << std::endl;
 	}
 
 private:
