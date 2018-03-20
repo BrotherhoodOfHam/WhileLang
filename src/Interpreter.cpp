@@ -24,8 +24,16 @@ ExitCode WLInterpreter::execute()
 	{
 		//Build Abstract Syntax Tree
 		m_syntaxTree.reset(new ProgramStart(m_tokens));
+
+		std::cout << "-------- Abstract Syntax Tree --------\n";
+
 		//Print tree
 		m_syntaxTree->print(std::cout);
+
+		std::cout << "------------- Executing --------------\n";
+		
+		//Execute program
+		m_syntaxTree->evaluate(m_ctx);
 	}
 	catch (SyntaxError e)
 	{

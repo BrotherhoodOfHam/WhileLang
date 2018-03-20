@@ -34,7 +34,17 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
+		m_condition->evaluate(ctx);
+		bool result = ctx.loadValue().value;
 
+		if (result)
+		{
+			m_true.evaluate(ctx);
+		}
+		else
+		{
+			m_false.evaluate(ctx);
+		}
 	}
 
 	void print(std::ostream& out, uint32_t i) override

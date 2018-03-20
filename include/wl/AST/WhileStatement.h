@@ -29,7 +29,20 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
+		while (true)
+		{
+			m_condition->evaluate(ctx);
+			bool result = ctx.loadValue().value;
 
+			if (result)
+			{
+				m_loop.evaluate(ctx);
+			}
+			else
+			{
+				return;
+			}
+		}
 	}
 
 	void print(std::ostream& out, uint32_t i) override

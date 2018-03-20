@@ -23,7 +23,8 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-
+		m_expression->evaluate(ctx);
+		ctx.setVariable(m_variable, ctx.loadValue().value);
 	}
 
 	void print(std::ostream& out, uint32_t i) override

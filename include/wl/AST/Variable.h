@@ -20,7 +20,7 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-
+		ctx.storeValue(ctx.getVariable(m_identifier));
 	}
 
 	void print(std::ostream& out, uint32_t i) override

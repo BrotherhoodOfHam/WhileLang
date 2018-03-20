@@ -39,7 +39,11 @@ public:
 
 	void evaluate(Context& ctx) override
 	{
-		
+		for (const auto& expr : m_expressions)
+		{
+			expr->evaluate(ctx);
+			ctx.iowrite(ctx.loadValue());
+		}
 	}
 
 	void print(std::ostream& out, uint32_t i) override
