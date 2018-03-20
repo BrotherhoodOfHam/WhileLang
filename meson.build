@@ -72,6 +72,8 @@ executable('wlc',
 
 wltest = executable('wltest',
 	sources : files(
+		'tests/utils.h',
+		'tests/test_assign.cpp',
 		'tests/test_tokenizer.cpp',
 		'tests/test.cpp'
 	),

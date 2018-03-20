@@ -6,32 +6,29 @@
 
 #include <gtest/gtest.h>
 
-#include <sstream>
-
+#include "utils.h"
 #include "wl/Tokenizer.h"
 
-TEST(libwl, tokenizer)
+TEST(WLtest, tokenizer)
 {
-	std::stringstream ss;
-	ss << "var c:=10*20+1;var b := c == 201;";
+	auto stream(wrapStream("var c:=10*20+1;var b := c == 201;"));
+	Tokenizer tok(stream);
 
-	Tokenizer tok(ss);
-
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_VAR);			//var
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_IDENTIFIER);	//c
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_ASSIGN);		//:=
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//10
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_MUL);		//*
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//20
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_PLUS);		//+
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//1
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_SEPARATOR);		//;
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_VAR);			//var
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_IDENTIFIER);	//b
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_ASSIGN);		//:=
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_IDENTIFIER);	//c
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_OP_EQ);			//==
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_INTEGER);		//201
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_SEPARATOR);		//;
-	ASSERT_EQ(tok.next().code, TokenCode::TOKEN_STOP);			//<STOP>
+	ASSERT_EQ(TokenCode::TOKEN_VAR,        tok.next().code); //var
+	ASSERT_EQ(TokenCode::TOKEN_IDENTIFIER, tok.next().code); //c
+	ASSERT_EQ(TokenCode::TOKEN_ASSIGN,     tok.next().code); //:=
+	ASSERT_EQ(TokenCode::TOKEN_INTEGER,    tok.next().code); //10
+	ASSERT_EQ(TokenCode::TOKEN_OP_MUL,     tok.next().code); //*
+	ASSERT_EQ(TokenCode::TOKEN_INTEGER,    tok.next().code); //20
+	ASSERT_EQ(TokenCode::TOKEN_OP_PLUS,    tok.next().code); //+
+	ASSERT_EQ(TokenCode::TOKEN_INTEGER,    tok.next().code); //1
+	ASSERT_EQ(TokenCode::TOKEN_SEPARATOR,  tok.next().code); //;
+	ASSERT_EQ(TokenCode::TOKEN_VAR,        tok.next().code); //var
+	ASSERT_EQ(TokenCode::TOKEN_IDENTIFIER, tok.next().code); //b
+	ASSERT_EQ(TokenCode::TOKEN_ASSIGN,     tok.next().code); //:=
+	ASSERT_EQ(TokenCode::TOKEN_IDENTIFIER, tok.next().code); //c
+	ASSERT_EQ(TokenCode::TOKEN_OP_EQ,      tok.next().code); //==
+	ASSERT_EQ(TokenCode::TOKEN_INTEGER,    tok.next().code); //201
+	ASSERT_EQ(TokenCode::TOKEN_SEPARATOR,  tok.next().code); //;
+	ASSERT_EQ(TokenCode::TOKEN_STOP,       tok.next().code); //<STOP>
 }
