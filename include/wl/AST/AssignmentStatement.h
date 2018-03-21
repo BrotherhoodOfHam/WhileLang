@@ -1,7 +1,7 @@
 /*
 	Assignment Statement:
 
-	<identifier> := <expression>
+	<assignment-statement> ::= <identifier> := <expression>
 */
 
 #pragma once

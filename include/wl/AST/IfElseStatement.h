@@ -1,7 +1,7 @@
 /*
 	If Statement:
 
-	<if-statement> ::= if <boolean-expression> then <command-list> else <command-list> fi
+	<if-statement> ::= if <expression> then <command-list> else <command-list> fi
 */
 
 #pragma once

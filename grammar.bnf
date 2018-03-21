@@ -1,0 +1,46 @@
+##################################################################################################
+#
+#	WhileLang grammar specification in Backus Naur Form:
+#
+##################################################################################################
+
+<program> ::= program
+				<variable-decl-list>
+			  begin
+				<command-list>
+			  end
+
+<variable-decl-list> ::= <empty> | <variable-decl>; | <variable-decl>; <variable-decl-list>
+
+<command-list> ::= <command>; | <command>; <command-list>
+
+<command> ::=  <if-statement> |
+			   <while-statement> |
+			   <assignment-statement> |
+			   <io-command>
+
+##################################################################################################
+
+<expression> ::= <literal>
+<expression> ::= <variable>
+<expression> ::= (<expression>)
+<expression> ::= <operation>
+
+<literal> ::= <boolean> | <integer>
+<variable> ::= <identifier>
+
+<operation> ::= <expression> <operator> <expression>
+
+<expression-list> ::= <expression> | <expression>, <expression-list>
+
+##################################################################################################
+
+<if-statement> ::= if <expression> then <command-list> else <command-list> fi
+
+<while-statement> ::= while <expression> do <command-list> od
+
+<assignment-statement> ::= <variable> := <expression>
+
+<io-command> ::= write(<expression-list>) | read(<identifier-list>)
+
+##################################################################################################

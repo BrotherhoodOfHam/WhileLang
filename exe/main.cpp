@@ -25,11 +25,9 @@ int main(int argc, char** argv)
 	if (auto err = i.execute())
 	{
 		std::cout << err << std::endl;
-		std::cin.get();
 		return -1;
 	}
 
-	std::cin.get();
 	return 0;
 
 	//////////////////////////////////////////////////
