@@ -90,6 +90,23 @@ namespace
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+Token Tokenizer::next()
+{
+	Token cur;
+
+	do
+	{
+		//Next token is stored one ahead
+		cur = m_next;
+		//Fetch and store the next token
+		fetch();
+	
+	//If the next token is a code comment, fetch again
+	} while (m_next.code == TOKEN_COMMENT);
+
+	return cur;
+}
+
 /*
 	Fetch the next token
 */
@@ -99,18 +116,30 @@ void Tokenizer::fetch()
 	tok.code = TokenCode::TOKEN_STOP;
 	tok.symbol.clear();
 	
-	//skip whitespace
-	while (CharTypes::classify(m_stream.peek()) == CHAR_CLASS_WHITESPACE)
-	{
-		if (m_stream.get() == '\n')
-		{
-			tok.line++;
-		}
-	}
-
 	//for each input character
 	if (m_stream.peek() != EOF)
 	{
+		//skip whitespace
+		while (CharTypes::classify(m_stream.peek()) == CHAR_CLASS_WHITESPACE)
+		{
+			if (m_stream.get() == '\n')
+			{
+				tok.line++;
+			}
+		}
+
+		//comment
+		if (m_stream.peek() == '#')
+		{
+			do
+			{
+				tok.symbol += m_stream.get();
+				tok.code = TOKEN_COMMENT;
+			} while (m_stream.peek() != '\n');
+			
+			return;
+		}
+
 		const CharClass cl = CharTypes::classify(m_stream.peek());
 		
 		//number

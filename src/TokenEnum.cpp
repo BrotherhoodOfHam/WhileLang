@@ -64,6 +64,7 @@ const char* Token::codeToString(TokenCode code)
 
 		//Generic identifier
 		"Identifier",
+		"Comment",
 
 		"UNKNOWN"
 	};

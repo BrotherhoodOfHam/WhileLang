@@ -11,7 +11,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-enum TokenCode
+enum TokenCode : uint8_t
 {
 	TOKEN_STOP,
 	
@@ -68,8 +68,12 @@ enum TokenCode
 
 	//Generic identifier
 	TOKEN_IDENTIFIER,
+	//Code comment
+	TOKEN_COMMENT,
 
-	TOKEN_UNKNOWN
+	TOKEN_UNKNOWN,
+
+	ENUM_SIZE
 };
 
 /*
@@ -107,15 +111,7 @@ public:
 	Tokenizer(std::istream& stream) :
 		m_stream(stream)
 	{
-		fetch();
-	}
-
-	//Get the next token and increment it
-	Token next()
-	{
-		Token cur(m_next);
-		fetch();
-		return cur;
+		next();
 	}
 
 	//Peek the next token
@@ -123,6 +119,9 @@ public:
 	{
 		return m_next;
 	}
+
+	//Consume and return the next available token
+	Token next();
 
 	//Get the next token and assert it's type is equal to the given code
 	Token nextAssert(TokenCode code);

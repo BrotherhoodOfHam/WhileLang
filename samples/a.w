@@ -1,3 +1,7 @@
+#
+#	sample program
+#
+
 program
 var x, y : nat;
 var i : nat;
