@@ -9,6 +9,7 @@
 #include "wl/AST.h"
 
 #include "ExpressionBuilder.h"
+#include "CommandList.h"
 
 class WhileStatement : public AST
 {
