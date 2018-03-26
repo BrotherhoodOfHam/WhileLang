@@ -1,5 +1,5 @@
 /*
-	Entry point
+	Command Line Interface for WhileLang interpreter
 */
 
 #include <iostream>
@@ -18,6 +18,8 @@ int main(int argc, char** argv)
 		return -1;
 	}
 	
+	WLInterpreter i;
+	
 	std::ifstream s(argv[1]);
 
 	if (s.fail())
@@ -26,45 +28,20 @@ int main(int argc, char** argv)
 		return -2;
 	}
 
-	WLInterpreter i(s);
-
-	if (auto err = i.execute())
+	//build AST
+	if (i.build(s))
 	{
-		std::cerr << "Failed with error: "<< err << std::endl;
-		return -1;
-	}
-
-	return 0;
-
-	//////////////////////////////////////////////////
-
-	std::cout << "type string:" << std::endl;
-	
-	while (std::cin)
-	{
-		std::stringstream ss;
-		std::string lnbuf;
-		
-		getline(std::cin, lnbuf);
-		ss << lnbuf;
-		
-		Tokenizer tokenizer(ss);
-		
-		while (tokenizer.hasNext())
-		{	
-			Token t = tokenizer.next();
-
-			std::cout
-				<< "["
-				<< Token::codeToString(t.code)
-				<< "]\t-> \""
-				<< t.symbol
-				<< "\""
-				<< std::endl;
+		//execute AST
+		if (auto err = i.execute())
+		{
+			std::cerr << "Failed with error: "<< err << std::endl;
+			return err;
 		}
+		
+		return 0;
 	}
 
-	return 0;
+	return -1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

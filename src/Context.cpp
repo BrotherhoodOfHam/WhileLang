@@ -61,6 +61,36 @@ bool Context::isType(const Symbol& type)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void Context::iowrite(const Variable& val)
+{
+	m_stdout << ">> ";
+	
+	if (val.type == TypeID::NAT)
+	{
+		m_stdout << val.value << std::endl;
+	}
+	else if (val.type == TypeID::BOOL)
+	{
+		if (val.value == 0)
+			m_stdout << "false" << std::endl;
+		else
+			m_stdout << "true" << std::endl;
+	}
+}
+
+void Context::ioread(const std::string& varName)
+{
+	m_stdout << "<< ";
+
+	std::string temp;
+	std::getline(m_stdin, temp);
+
+	const Value val = std::stoull(temp);
+	setVariable(varName, val);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Context::Variable Context::binaryOperation(Variable a, Operator op, Variable b)
 {
 	Value v = 0;

@@ -11,7 +11,6 @@
 #include <memory>
 
 #include "Context.h"
-#include "Tokenizer.h"
 #include "AST.h"
 
 enum ExitCode
@@ -27,13 +26,23 @@ public:
 	/*
 		Construct an interpreter for the given input program
 	*/
-	WLInterpreter(std::istream& program);
-
+	WLInterpreter();
+	
+	/*
+		Build an Abstract Syntax Tree from a given sequence of chars
+	*/
+	bool build(std::istream& program);
+	
+	/*
+		Print the abstract syntax tree to the logging stream
+	*/
+	void print();
+	
 	/*
 		Execute the given program
 	*/
 	ExitCode execute();
-
+	
 	/*
 		Access logging stream
 	*/
@@ -47,5 +56,4 @@ private:
 	ASTNode m_syntaxTree;
 
 	Context m_ctx;
-	Tokenizer m_tokens;
 };
