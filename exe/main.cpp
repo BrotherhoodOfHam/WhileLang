@@ -12,11 +12,17 @@
 
 int main(int argc, char** argv)
 {
-	std::ifstream s("../samples/a.w");
+	if (argc <= 1)
+	{
+		std::cerr << "Incorrect number of arguments, expected: [OPTIONS...] [FILE]." << std::endl;
+		return -1;
+	}
+	
+	std::ifstream s(argv[1]);
 
 	if (s.fail())
 	{
-		std::cerr << "unable to find file." << std::endl;
+		std::cerr << "Unable to find file: " << argv[1] << std::endl;
 		return -2;
 	}
 
@@ -24,7 +30,7 @@ int main(int argc, char** argv)
 
 	if (auto err = i.execute())
 	{
-		std::cout << err << std::endl;
+		std::cout << "Failed with error: "<< err << std::endl;
 		return -1;
 	}
 

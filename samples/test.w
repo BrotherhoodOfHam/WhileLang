@@ -1,5 +1,5 @@
 #
-#	sample program
+#	test program
 #
 
 program
