@@ -21,3 +21,4 @@ More information about the grammar can be found in grammar.bnf located in the ro
 * Logical connectives (and/or/not).
 * General code cleanup
 * Proper CLI
+* Operator precedence

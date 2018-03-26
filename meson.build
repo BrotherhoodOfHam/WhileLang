@@ -76,7 +76,7 @@ wltest = executable('wltest',
 		'tests/test_control.cpp',
 		'tests/test_expr.cpp',
 		'tests/test_tokenizer.cpp',
-		'tests/test_interpreter.cpp',
+		'tests/test_program.cpp',
 		'tests/test.cpp'
 	),
 	link_with : libwl,

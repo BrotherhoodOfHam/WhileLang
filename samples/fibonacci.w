@@ -19,10 +19,10 @@ begin
 
 	# handle base cases
 	if (n == 0) then
-		write(0);
+		f := 0;
 	else
 		if (n == 1) then
-			write(1);
+			f := 1;
 		else
 
 			# set counter
@@ -42,10 +42,10 @@ begin
 				i := i + 1;
 			od;
 
-			# print result
-			write(f);
-
 		fi;
 	fi;
+	
+	# print result
+	write(f);
 	
 end

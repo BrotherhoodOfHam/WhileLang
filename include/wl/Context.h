@@ -76,6 +76,11 @@ public:
 	Context();
 
 	/*
+		Construct context object with given IO streams
+	*/
+	Context(std::ostream& out, std::istream& in);
+	
+	/*
 		Declare a variable of a given type
 	*/
 	void declareVariable(const Symbol& var, const Symbol& type);
@@ -112,6 +117,8 @@ public:
 
 	void iowrite(const Variable& val)
 	{
+		m_stdout << "<< ";
+		
 		if (val.type == TypeID::NAT)
 		{
 			m_stdout << val.value << std::endl;
@@ -127,7 +134,7 @@ public:
 
 	void ioread(const std::string& varName)
 	{
-		m_stdout << ">";
+		m_stdout << ">> ";
 
 		std::string temp;
 		std::getline(m_stdin, temp);

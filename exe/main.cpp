@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 
 	if (auto err = i.execute())
 	{
-		std::cout << "Failed with error: "<< err << std::endl;
+		std::cerr << "Failed with error: "<< err << std::endl;
 		return -1;
 	}
 

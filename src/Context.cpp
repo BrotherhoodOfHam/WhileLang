@@ -11,9 +11,12 @@
 Context::Context() :
 	m_stdout(std::cout),
 	m_stdin(std::cin)
-{
+{}
 
-}
+Context::Context(std::ostream& out, std::istream& in) :
+	m_stdout(out),
+	m_stdin(in)
+{}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	Type-System functions
