@@ -125,9 +125,12 @@ void Tokenizer::fetch()
 			if (m_stream.get() == '\n')
 			{
 				tok.line++;
+				tok.toknum = 0;
 			}
 		}
 
+		const CharClass cl = CharTypes::classify(m_stream.peek());
+		
 		//comment
 		if (m_stream.peek() == '#')
 		{
@@ -136,14 +139,9 @@ void Tokenizer::fetch()
 				tok.symbol += m_stream.get();
 				tok.code = TOKEN_COMMENT;
 			} while (m_stream.peek() != '\n');
-			
-			return;
 		}
-
-		const CharClass cl = CharTypes::classify(m_stream.peek());
-		
 		//number
-		if (cl == CHAR_CLASS_DIGIT)
+		else if (cl == CHAR_CLASS_DIGIT)
 		{
 			tok.code = TOKEN_INTEGER;
 
@@ -213,6 +211,8 @@ void Tokenizer::fetch()
 				mapSymbol(tok);
 			}
 		}
+		
+		tok.toknum++;
 	}
 }
 
@@ -222,7 +222,7 @@ Token Tokenizer::nextAssert(TokenCode code)
 {
 	if (!isNext(code))
 	{
-		throw SyntaxError();
+		throw SyntaxError(code, m_next);
 	}
 
 	return next();

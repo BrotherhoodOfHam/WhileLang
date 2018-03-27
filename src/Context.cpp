@@ -79,7 +79,7 @@ void Context::iowrite(const Variable& val)
 }
 
 void Context::ioread(const std::string& varName)
-{
+{	
 	m_stdout << "<< ";
 
 	std::string temp;

@@ -9,13 +9,17 @@
 
 struct SyntaxError
 {
-	TokenCode expected;
-	TokenCode actual;
+	TokenCode expected = TOKEN_UNKNOWN;
+	Token actual;
 
-	SyntaxError() {}
-	SyntaxError(TokenCode ex, TokenCode ac) :
+	SyntaxError(TokenCode ex, Token ac) :
 		expected(ex),
 		actual(ac)
+	{}
+	
+	SyntaxError(const SyntaxError& rhs) :
+		expected(rhs.expected),
+		actual(rhs.actual)
 	{}
 	
 	/*
@@ -24,8 +28,9 @@ struct SyntaxError
 	void format(std::ostream& out)
 	{
 		out << "Syntax Error:\n";
-		out << "Expected \"" << Token::codeToString(expected);
-		out << "\" actually got \"" << Token::codeToString(actual) << "\"";
+		out << "Expected \"" << Token::codeToString(this->expected) << "\"\n";
+		out << "Actually got \"" << Token::codeToString(this->actual.code) << "\"\n";
+		out << "line = " << this->actual.line << ", token num. = " << this->actual.toknum;
 		out << std::endl;
 	}
 };

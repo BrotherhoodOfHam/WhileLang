@@ -42,7 +42,7 @@ public:
 			return;
 		}
 		
-		throw SyntaxError(TOKEN_INTEGER, tok.code);
+		throw SyntaxError(TOKEN_INTEGER, tok);
 	}
 
 	void evaluate(Context& ctx) override

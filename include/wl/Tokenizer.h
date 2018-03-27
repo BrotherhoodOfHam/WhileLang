@@ -84,16 +84,19 @@ struct Token
 	std::string symbol;
 	TokenCode code;
 	int line;
+	int toknum;
 
 	Token() :
 		code(TOKEN_STOP),
-		line(0)
+		line(1),
+		toknum(0)
 	{}
 
 	Token(const Token& rhs) :
 		symbol(rhs.symbol),
 		code(rhs.code),
-		line(rhs.line)
+		line(rhs.line),
+		toknum(rhs.toknum)
 	{}
 
 	static const char* codeToString(TokenCode code);

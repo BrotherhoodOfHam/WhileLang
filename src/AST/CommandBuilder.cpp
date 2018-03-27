@@ -39,5 +39,5 @@ ASTNode CommandBuilder::construct(Tokenizer& tokens)
 	case TOKEN_WRITE:      return ASTNode(new IOWriteCommand(tokens));
 	}
 
-	throw SyntaxError(tokens.peek().code, TOKEN_IDENTIFIER);
+	throw SyntaxError(TOKEN_IDENTIFIER, tokens.peek());
 }

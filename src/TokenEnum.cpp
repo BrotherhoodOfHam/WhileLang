@@ -8,7 +8,7 @@ const char* Token::codeToString(TokenCode code)
 {
 	static const char* strings[] =
 	{
-		"STOP"
+		"STOP",
 
 		//keywords
 		"program",
@@ -69,5 +69,5 @@ const char* Token::codeToString(TokenCode code)
 		"UNKNOWN"
 	};
 
-	return strings[code - 1];
+	return strings[code];
 }
