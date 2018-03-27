@@ -17,7 +17,7 @@ void runProgram(const char* fpath, Context& ctx)
 {
 	std::ifstream f(fpath);
 	
-	ASSERT_TRUE(f.good());
+	ASSERT_TRUE(f.good()) << "Unable to find \"" << fpath << "\"";
 	
 	Tokenizer tokens(f);
 	
@@ -76,7 +76,7 @@ TEST(WLtest, program_factorial)
 		
 		in << i;
 		Context ctx(out, in);
-		runProgram("../samples/factorial.w", ctx);
+		runProgram("samples/factorial.w", ctx);
 		
 		ASSERT_EQ(factorial(i), ctx.getVariable("f").value);
 	}
@@ -92,7 +92,7 @@ TEST(WLtest, program_isprime)
 		
 		in << i;
 		Context ctx(out, in);
-		runProgram("../samples/isprime.w", ctx);
+		runProgram("samples/isprime.w", ctx);
 		
 		ASSERT_EQ(isprime(i), ctx.getVariable("isprime").value != 0) << "where x = " << i;
 	}
@@ -108,7 +108,7 @@ TEST(WLtest, program_fibonacci)
 		
 		in << i;
 		Context ctx(out, in);
-		runProgram("../samples/fibonacci.w", ctx);
+		runProgram("samples/fibonacci.w", ctx);
 		
 		ASSERT_EQ(fibonacci(i), ctx.getVariable("f").value);
 	}

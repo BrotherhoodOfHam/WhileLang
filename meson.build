@@ -86,6 +86,6 @@ wltest = executable('wltest',
 	dependencies : gtest
 )
 
-test('test', wltest)
+test('test', wltest, workdir : meson.source_root())
 
 ########################################################################
