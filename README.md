@@ -40,9 +40,11 @@ wlc square.w
 << 2
 >> 4
 ```
-Or analysed,
+The -print-ast option will print the abstract syntax tree in a human readable form:
 ```bash
 wlc -print-ast square.w
+```
+```bash
 PROGRAM
   VARDECL-LIST:
     VARDECL x, TYPE nat
@@ -52,8 +54,13 @@ PROGRAM
       OPERATION *
         VARIABLE x
         VARIABLE x
-        
+```
+The -print-tokens option will print each token of the given program:
+
+```bash
 wlc -print-tokens square.w
+```
+```bash
 (1:1)[program]                -> "program"
 (1:2)[var]                    -> "var"
 (1:3)[Identifier]             -> "x"
